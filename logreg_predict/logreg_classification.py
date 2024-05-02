@@ -52,15 +52,12 @@ class Logreg_Predict():
 			self.get_features_from_Csv()
 			# Creer un DataFrame pour recup les poids en fonction des mifs
 			self.weights_df = pd.read_csv(self.weights_csv_file_path)
-			# print(self.weights_df)
 			# Creation du DataSet pour les predictions
 			self.dataTest = self.dataSet[self.features]
 			self.standadizeDatas()
 			print(self.dataTest.head(5))
 
 			# Recupere le nom des differentes maisons
-			# self.houses = self.dataSet['Hogwarts House'].unique()
-			# print(f'Unique Hogwarts House(DataSet): {self.houses}')
 			self.houses = self.weights_df['Hogwarts House'].unique()
 			print(f'Unique Hogwarts House (Weights): {self.houses}')
 			# Ajoute une colonne 'Probas' au Df des weights pour les futurs calculs
@@ -71,13 +68,8 @@ class Logreg_Predict():
 			self.predict_Df = pd.DataFrame({
 				'Index': range(self.n_lines),
 				'Hogwarts House': [''] * self.n_lines
-				# 'Proba': [0.0] * self.n_lines,
-				# 'Second House': [''] * self.n_lines,
-				# 'Second Proba': [0.0] * self.n_lines
 			})
-			# print(self.predict_Df.head(5))
-			# self.predict_Df.info()
-
+   
 			self.accuracy_Df = pd.DataFrame({
 				'Index': range(self.n_lines),
 				'Hogwarts House': [''] * self.n_lines,
@@ -93,12 +85,8 @@ class Logreg_Predict():
 
 	def Predictions(self) :
 		try :
-			# print(f'Type self.dataTest : {type(self.dataTest)}')
-			# print(f'Type self.weights_df : {type(self.weights_df)}')
-
 			# Index de la colonne 'Probas' pour l'eliminer des calculs
 			i_prob = len(self.weights_df.columns) - 1
-			# print(f"len(self.weights_df.columns) - 1 : [ {i_prob} ]")
 			
 			for row_index, row in self.dataTest.iterrows() :
 				max_prob = 0.0
@@ -121,22 +109,16 @@ class Logreg_Predict():
 						second_prob = proba
 						second_house = line['Hogwarts House']
 				
-				# print(f"\n{self.weights_df}")
 				self.predict_Df.at[row_index, 'Index'] = row_index
 				self.predict_Df.at[row_index, 'Hogwarts House'] = main_house
-
 				self.accuracy_Df.at[row_index, 'Index'] = row_index
 				self.accuracy_Df.at[row_index, 'Hogwarts House'] = main_house
 				self.accuracy_Df.at[row_index, 'Second House'] = second_house
 				self.accuracy_Df.at[row_index, 'Proba'] = max_prob
 				self.accuracy_Df.at[row_index, 'Second Proba'] = second_prob
 				
-
-				# if row_index > 4 :
-				# 	break
 			print('\n --> self.predict_Df.head(6) <--')		
 			print(self.predict_Df.head(7))
-			# print(self.dataSet.head(7))
 
 			# Verif si file deja existant for delete
 			if os.path.exists(self.houses_csv_file_path) :

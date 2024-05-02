@@ -17,7 +17,6 @@ class Logreg_Train():
 		self.miniBatch_lr = 0.005
 		self.miniBatch_epochs = 5
 		self.batch_size = 5
-		# '//' operateur python de divion entier(disons = int)
 		self.n_batches = len(dataSet) // self.batch_size
 
 		self.dataSet = dataSet
@@ -45,24 +44,15 @@ class Logreg_Train():
 		# Commented lines are used for Model Training, except for 'Hogwarts House' 
 		columns_to_drop = [
 			'Index',
-			# 'Hogwarts House',
 			'First Name',
 			'Last Name',
 			'Birthday',
 			'Best Hand',
 			'Arithmancy',
-			# 'Astronomy',
 			'Herbology',
-			# 'Defense Against the Dark Arts',
-			# 'Divination',
 			'Muggle Studies',
-			# 'Ancient Runes',
-			# 'History of Magic',
-			# 'Transfiguration',
 			'Potions',
 			'Care of Magical Creatures',
-			# 'Charms',
-			# 'Flying'
 			]
 		self.dataTrain = self.dataTrain.drop(columns=columns_to_drop)
 		self.dataTrain = self.dataTrain.drop(columns='Hogwarts House')
@@ -87,8 +77,6 @@ class Logreg_Train():
 		weights_value = 1 / (len(features) - 1)
 		# +2 pour 'Biais' et 'One vs All' et -1 car [0] :)
 		self.weights = [weights_value] * (len(features) + 2 - 1)	
-		# self.weights = [0.0] * (len(features) + 2 - 1)	
-		# print(f'Weights List = {self.weights}')	
 
 		# Verif si file deja existant for delete
 		if os.path.exists(self.weights_csv_file_path) :
@@ -106,8 +94,6 @@ class Logreg_Train():
 			print(f' Train House -> [{house}]')
 			# Remplace la house par 1 et le reste par 0
 			self.dataTrain['One vs All'] = (self.dataSet['Hogwarts House'] == house).astype(float)
-			# print(f' --> [ {house} ]:')
-			# print(self.dataTrain.head(10))
 
 			self.Gradient_Descent()
 
@@ -115,7 +101,6 @@ class Logreg_Train():
 			self.plot_cost_function(house, self.epochs)
 			self.cost_history =[]
 
-			# print(f'[{house}], ',self.weights)
 			# re-convert from numpy to list pour csv.writter + -2 pour exclure 'Biais' et 'One vs All'
 			weights_list = self.weights[:-2].tolist()
 			# Ajout de la ligne avec les poids de la house dans le fichier Csv
@@ -135,7 +120,6 @@ class Logreg_Train():
 			for n in range(self.epochs) :
 				self.weights = self.weights - self.learning_rate * self.Gradient( z, y_true)
 				predictions = self.sigmoid_function( z )
-				# print(f'Predictions - Probas: {predictions}')
 				cost_loss = -np.mean(y_true * np.log(predictions) + (1 - y_true) * np.log(1 - predictions))
 				self.cost_history.append(cost_loss)
 		except Exception as e:
@@ -164,8 +148,6 @@ class Logreg_Train():
 				self.dataTrain['One vs All'] = (self.dataSet['Hogwarts House'] == house).astype(float)
 				y_true = self.dataTrain['One vs All'].to_numpy()
 				z = self.dataTrain.to_numpy()
-				# print(f'y_true[0]\n',y_true[0])
-				# print(f'z[0]\n',z[0])
 
 				for n in range(self.stochastic_epochs) :
 					for i in range(self.n_lines) :

@@ -43,9 +43,6 @@ class Describe() :
 					d7 = deciles(column, 0.7)
 					d8 = deciles(column, 0.8)
 					d9 = deciles(column, 0.9)
-					# print(f'[ {column_name} ] \t -> \tcount: {n:.6f} \tmean: {mean:.6f} \tstd: {std:.6f}\n\t\t\tmin: {min:.6f} \tmax: {max:.6f}')
-					# print(f'\t\t\t25%: {q1:.6} \tmediane: {q2:.6f} \t75%: {q3:.6f}')
-					# print('')
 
 					width_max = 12
 					feature = {
@@ -106,7 +103,6 @@ class Describe() :
 		except :
 			print(' [ error ] -> Describe.describe()')
 
-# Hogwarts House
 
 	def plot_scatter_houses_By_Class(self) -> None:
 		try :
@@ -115,15 +111,11 @@ class Describe() :
 			print(f'Hogwarts Houses: \t{self.houses}')
 			for maison in self.houses :
 				self.byHousesDataSets[maison] = self.dataSet[self.dataSet['Hogwarts House'] == maison]
-			# [ Debug ]
-			# for maison, sous_dataset in self.byHousesDataSets.items():
-			# 	print(f"Élèves de la maison {maison} :\n{sous_dataset}\n")
 			
 			self.GryffindorBookMark = self.byHousesDataSets['Gryffindor'].iloc[:, 5:]
 			self.SlytherinBookMark = self.byHousesDataSets['Slytherin'].iloc[:, 5:]
 			self.HufflepuffBookMark = self.byHousesDataSets['Hufflepuff'].iloc[:, 5:]
 			self.RavenclawBookMark = self.byHousesDataSets['Ravenclaw'].iloc[:, 5:]
-			# print(self.GryffindorBookMark)
 
 			choix = 0
 			while choix == 0 :
@@ -161,7 +153,6 @@ class Describe() :
 				# Créer un seul graphique avec plusieurs sous-graphiques
 				taille_graphique = (3.5, 2)
 				fig, axs = plt.subplots(nombre_lignes, nombre_colonnes, figsize=(nombre_colonnes * taille_graphique[0], nombre_lignes * taille_graphique[1]))
-				# fig, axs = plt.subplots(nombre_lignes, nombre_colonnes, figsize=(15, nombre_lignes * 5))
 
 				# Parcourir chaque matière et créer un nuage de points pour chaque maison
 				for i, matiere in enumerate(matieres):
@@ -178,7 +169,6 @@ class Describe() :
 					axs[ligne, colonne].set_title(f'* {matiere} *')
 					axs[ligne, colonne].set_xlabel('Élèves')
 					axs[ligne, colonne].set_ylabel('Notes')
-					# axs[ligne, colonne].legend()
 
 				# Supprimer les sous-graphiques inutilisés, le cas échéant
 				for i in range(len(matieres), nombre_lignes * nombre_colonnes):

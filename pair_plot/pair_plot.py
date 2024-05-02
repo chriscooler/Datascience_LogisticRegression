@@ -22,9 +22,6 @@ class Pair_Plot() :
 			print(f'Hogwarts Houses: \t{self.houses}')
 			for maison in self.houses :
 				self.byHousesDataSets[maison] = self.dataSet[self.dataSet['Hogwarts House'] == maison]
-			# [ Debug ]
-			# for maison, sous_dataset in self.byHousesDataSets.items():
-			# 	print(f"Élèves de la maison {maison} :\n{sous_dataset}\n")
 			self.GryffindorBookMark = self.byHousesDataSets['Gryffindor'].iloc[:, 5:]
 			self.SlytherinBookMark = self.byHousesDataSets['Slytherin'].iloc[:, 5:]
 			self.HufflepuffBookMark = self.byHousesDataSets['Hufflepuff'].iloc[:, 5:]
@@ -72,7 +69,7 @@ class Pair_Plot() :
 						axs[y, x].scatter(self.RavenclawBookMark[matiere_x], self.RavenclawBookMark[matiere_y], label='Ravenclaw', color='blue', s=point)
 						axs[y, x].scatter(self.SlytherinBookMark[matiere_x], self.SlytherinBookMark[matiere_y], label='Slytherin', color='green', s=point)
 
-			# plt.tight_layout()  # Ajuste automatiquement la disposition pour éviter les chevauchements
+			# Ajuste automatiquement la disposition pour éviter les chevauchements
 			plt.tight_layout(pad=0, w_pad=0.05, h_pad=0.06)
 			plt.show()
 

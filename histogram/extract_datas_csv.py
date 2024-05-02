@@ -14,10 +14,4 @@ def extract_Datas_from_csv(csv_file) :
 	except :
 		print(f'error: cannot read csv file: \'{csv_file}\'')
 		raise ValueError
-
-	# print(f'\n -[  data.info  ]-\n{data.info}')
-	# print(f'\n -[  data.info()  ]-\n{data.info()}')
-	# print(f'\n -[  data.describe()  ]-\n{data.describe()}')
-	# print('\n -[  Data  ]-\n', data)
-
 	return data

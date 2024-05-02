@@ -22,9 +22,6 @@ class Histogram() :
 			print(f'Hogwarts Houses: \t{self.houses}')
 			for maison in self.houses :
 				self.byHousesDataSets[maison] = self.dataSet[self.dataSet['Hogwarts House'] == maison]
-			# [ Debug ]
-			# for maison, sous_dataset in self.byHousesDataSets.items():
-			# 	print(f"Élèves de la maison {maison} :\n{sous_dataset}\n")
 			self.GryffindorBookMark = self.byHousesDataSets['Gryffindor'].iloc[:, 5:]
 			self.SlytherinBookMark = self.byHousesDataSets['Slytherin'].iloc[:, 5:]
 			self.HufflepuffBookMark = self.byHousesDataSets['Hufflepuff'].iloc[:, 5:]
