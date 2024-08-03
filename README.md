@@ -3,6 +3,25 @@
 ## Overview
 This repository comprises mandatory projects for the Logistic Regression module in the Data Science curriculum at Ecole 42. It encompasses data analysis and logistic regression implementation.
 
+
+Harry Potter and the Data Scientist: Write a Classifier and Save Hogwarts!
+In this project, you will implement a linear classification model, specifically logistic regression, as an extension of the linear regression topic. 
+Additionally, you are encouraged to develop a machine learning toolkit throughout the process.
+
+### Key Tasks:
+
+Data Preparation
+1.Read Datasets: Learn to load and understand various data formats.
+2.Data Visualization: Visualize data in multiple formats to gain insights.
+3.Data Cleaning: Perform essential data cleaning by identifying and removing irrelevant or incorrect information to ensure the dataset is accurate and ready for analysis.
+
+### Model Training: 
+- Apply logistic regression to address classification problems. This involves training the model to make predictions based on the cleaned and prepared data.
+
+- Toolkit Development: Build a machine learning toolkit to streamline your workflow and enhance your efficiency in future projects.
+
+- By following these steps, you will gain hands-on experience in data preprocessing, visualization, and classification, ultimately contributing to saving Hogwarts!
+
 ## Prerequisites
 Ensure you have the following libraries installed:
 - NumPy
